@@ -1,0 +1,130 @@
+%!TEX program = xelatex
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Short Sectioned Assignment
+% LaTeX Template
+% Version 1.0 (5/5/12)
+%
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+%
+% Original author:
+% Frits Wenneker (http://www.howtotex.com)
+%
+% License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass[paper=a4, fontsize=11pt]{scrartcl} % A4 paper and 11pt font size
+\usepackage{xeCJK}
+\usepackage{gensymb}
+\usepackage[T1]{fontenc} % Use 8-bit encoding that has 256 glyphs
+\usepackage{fourier} % Use the Adobe Utopia font for the document - comment this line to return to the LaTeX default
+\usepackage[english]{babel} % English language/hyphenation
+\usepackage{amsmath,amsfonts,amsthm} % Math packages
+
+\usepackage{lipsum} % Used for inserting dummy 'Lorem ipsum' text into the template
+\usepackage{enumerate}
+\usepackage{sectsty} % Allows customizing section commands
+\allsectionsfont{\normalfont\scshape} % Make all sections centered, the default font and small caps
+
+\usepackage{fancyhdr} % Custom headers and footers
+\pagestyle{fancyplain} % Makes all pages in the document conform to the custom headers and footers
+\fancyhead{} % No page header - if you want one, create it in the same way as the footers below
+\fancyfoot[L]{} % Empty left footer
+\fancyfoot[C]{} % Empty center footer
+\fancyfoot[R]{\thepage} % Page numbering for right footer
+\renewcommand{\headrulewidth}{0pt} % Remove header underlines
+\renewcommand{\footrulewidth}{0pt} % Remove footer underlines
+\setlength{\headheight}{13.6pt} % Customize the height of the header
+\numberwithin{equation}{section} % Number equations within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
+\numberwithin{figure}{section} % Number figures within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
+\numberwithin{table}{section} % Number tables within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
+
+\setlength\parindent{2em} % Removes all indentation from paragraphs - comment this line for an assignment with lots of text
+
+%----------------------------------------------------------------------------------------
+%	TITLE SECTION
+%----------------------------------------------------------------------------------------
+
+\newcommand{\horrule}[1]{\rule{\linewidth}{#1}} % Create horizontal rule command with 1 argument of height
+
+\title{	
+\normalfont \normalsize 
+\textsc{Zhiyuan College, Shanghai Jiaotong University} \\ % Your university, school and/or department name(s)
+\horrule{0.5pt} \\[0.4cm] % Thin top horizontal rule
+\huge CS389: Foundations of Data Science Homework I\\ % The assignment title
+\horrule{2pt} \\ % Thick bottom horizontal rule
+}
+
+\author{Zihao Ye} % Your name
+
+\date{\normalsize\today} % Today's date or a custom date
+
+\begin{document}
+
+\maketitle % Print the title
+
+\section*{Exercise 2.9}
+\subsection*{I}
+$$\textit{\#face}(k) = 2^{d-k}{d \choose k} $$
+\subsection*{II}
+$$\sum_{k=0}^{d}\textit{\#face}(k) = 3^d $$ 
+\subsection*{III}
+$$\textit{\#surface area} = \textit{\#face}(d - 1) = 2d $$
+\subsection*{IV}
+$$\textit{\#surface area} = 2^{d-1} \cdot 2d = 2^d\cdot d $$
+\subsection*{V}
+Let $\theta$ be the width of surface.
+$$V(\textit{surface}) / V = 1 - (1-\theta)^d \geq 1 - e^{-\theta d}$$
+When $d$ is large enough, no matter how small $\theta$ is, this ratio shall be close to $1$.
+\section*{Exercise 2.10}
+\subsection*{I}
+$$\textit{incremental unit of area} = 4\pi \sin(2\theta) $$
+\subsection*{II}
+$$I(\theta) = \int_{0}^{\frac{\pi}{2}} 4\pi \sin(2\theta) d\theta = 4\pi \sin^2(x)$$
+\subsection*{III}
+$$I\left(36\degree\right) = \frac{5 - \sqrt{5}}{2}  $$
+
+\section*{Exercise 2.11}
+Since $V(d) = \frac{2}{d}\frac{\pi^{\frac{d}{2}}}{\Gamma\left(\frac{d}{2}\right)}$, to find its maximum, we consider the ratio:
+$$\frac{V(d)}{V(d-1)} = \pi^\frac{1}{2}\left(1 - \frac{1}{d}\right)\frac{\Gamma\left(\frac{d-1}{2}\right)}{\Gamma\left(\frac{d}{2}\right)}  $$
+
+$$\frac{\Gamma\left(\frac{d-1}{2}\right)}{\Gamma\left(\frac{d}{2}\right)} = \left\{\begin{array}{ll} 
+\pi^{\frac{1}{2}}\left(1 - \frac{1}{2}\right)\left(1 - \frac{1}{4}\right)\cdots \left(1 - \frac{1}{d - 2}\right) & \textit{even}\\
+2\pi^{-\frac{1}{2}} \left(1 - \frac{1}{3}\right)\left(1 - \frac{1}{5}\right)\cdots \left(1 - \frac{1}{d - 2}\right) & \textit{odd}
+\end{array}\right.$$
+
+The formulas above shows that no matter whether $d$ is even or odd, the radio decreases as $d$ grows, which implies we need to find the largest $d$ that the corresponding ratio is no less than $1$(from both cases: $d$ is even or odd).
+
+After necessary computation, we derive that $d = 4, 5$ are the largest $d$'s that has a ratio $\frac{V(d)}{V(d-1)}\geq 1$ for even $d$ and odd $d$ respectively.
+
+However, $V(5) > V(4)$, thus $5$-dimensional unit ball has largest volume, about $5.26$.
+\section*{Exercise 2.12}
+\subsection*{I}
+$$V_2(d) = \frac{2}{d}\frac{\left(4\pi\right)^{\frac{d}{2}}}{\Gamma\left(\frac{d}{2}\right)}$$
+
+As $d$ grows, the numerator's magnitude is far less than the dominator's magnitude, as a result, its volume would converge to $0$.
+\subsection*{II}
+$$V_c(d) = \frac{2}{d}\frac{\left(c^2\pi\right)^{\frac{d}{2}}}{\Gamma\left(\frac{d}{2}\right)}$$
+
+It will converge to $0$ too, for the same reason as stated above.
+\subsection*{III}
+
+$$V_f(d) = \frac{2}{d}\frac{\left(f(d)^2\pi\right)^{\frac{d}{2}}}{\Gamma\left(\frac{d}{2}\right)}$$
+
+By using {\it Stirling's Approximation}, we derive that
+$$f(d) = \sqrt{\frac{d}{2\pi e}}\cdot \sqrt[d]{\pi d} $$
+is a feasible solution for this task.
+\section*{Exercise 2.13}
+This is because the definition of ``volume'' changes as $d$ differs. A $d$-dimension ball with volume $V$, however, must have a width $1$ (like a cylinder) in $d+1$-dimension space to maintain its original volume $V$.
+\section*{Exercise 2.14}
+\begin{enumerate}
+	\item $$\frac{A(4)}{2}$$
+	\item $$V(3) $$
+\end{enumerate}
+\end{document}

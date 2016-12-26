@@ -1,0 +1,240 @@
+%!TEX program = xelatex
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Short Sectioned Assignment
+% LaTeX Template
+% Version 1.0 (5/5/12)
+%
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+%
+% Original author:
+% Frits Wenneker (http://www.howtotex.com)
+%
+% License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass[paper=a4, fontsize=11pt]{scrartcl} % A4 paper and 11pt font size
+\usepackage{xeCJK}
+\usepackage{subfigure}
+\usepackage{gensymb}
+\usepackage{float}
+\usepackage[T1]{fontenc} % Use 8-bit encoding that has 256 glyphs
+\usepackage{fourier} % Use the Adobe Utopia font for the document - comment this line to return to the LaTeX default
+\usepackage[english]{babel} % English language/hyphenation
+\usepackage{amsmath,amsfonts,amsthm} % Math packages
+\usepackage{graphicx}
+\usepackage{lipsum} % Used for inserting dummy 'Lorem ipsum' text into the template
+\usepackage{enumerate}
+\usepackage{sectsty} % Allows customizing section commands
+\allsectionsfont{\normalfont\scshape} % Make all sections centered, the default font and small caps
+
+\usepackage{fancyhdr} % Custom headers and footers
+\pagestyle{fancyplain} % Makes all pages in the document conform to the custom headers and footers
+\fancyhead{} % No page header - if you want one, create it in the same way as the footers below
+\fancyfoot[L]{} % Empty left footer
+\fancyfoot[C]{} % Empty center footer
+\fancyfoot[R]{\thepage} % Page numbering for right footer
+\renewcommand{\headrulewidth}{0pt} % Remove header underlines
+\renewcommand{\footrulewidth}{0pt} % Remove footer underlines
+\setlength{\headheight}{13.6pt} % Customize the height of the header
+\numberwithin{equation}{section} % Number equations within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
+\numberwithin{figure}{section} % Number figures within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
+\numberwithin{table}{section} % Number tables within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
+
+\setlength\parindent{2em} % Removes all indentation from paragraphs - comment this line for an assignment with lots of text
+
+%----------------------------------------------------------------------------------------
+%	TITLE SECTION
+%----------------------------------------------------------------------------------------
+
+\newcommand{\horrule}[1]{\rule{\linewidth}{#1}} % Create horizontal rule command with 1 argument of height
+
+\title{	
+\normalfont \normalsize 
+\textsc{Zhiyuan College, Shanghai Jiaotong University} \\ % Your university, school and/or department name(s)
+\horrule{0.5pt} \\[0.4cm] % Thin top horizontal rule
+\huge CS389: Foundations of Data Science Homework II\\ % The assignment title
+\horrule{2pt} \\ % Thick bottom horizontal rule
+}
+
+\author{Zihao Ye} % Your name
+
+\date{\normalsize\today} % Today's date or a custom date
+
+\begin{document}
+
+\maketitle % Print the title
+
+\section*{Exercise 2.20}
+Suppose $r$ is the radius of the upper surface of cylinder, the volume of the cylinder will be:
+$$\sqrt{1 - r^2}\cdot r^d V(d) $$
+
+Since $V(d)$ has nothing to do with $r$, we just need to optimize $\sqrt{1 - r^2}\cdot r^{d-1}$, considering
+$$\frac{\partial}{\partial r} \left( \sqrt{1-r^2}\cdot r^{d-1}\right) = \frac{r^{d-2}\left((d - 1)(r^2 - 1) + r^2\right)}{\sqrt{1-r^2}} $$
+
+when $r = \sqrt{\frac{d - 1}{d}}$, i.e. $h = \sqrt{\frac{1}{d}}$ the volume will reach its peak.
+\section*{Exercise 2.26}
+The intersection of a narrow slice at the equator and a narrow annulus at the surface of the ball is not empty(In 2D and 3D situations, it looks like a doughnut). In high dimensions, we can prove that most of the volume of a annulus at the surface of the ball concentrate on a narrow slice at the equator.
+\section*{Exercise 2.27}
+The experiment result shows that about $330-360$ points are in each band. Only $75$ points are in all five bounds.
+
+To analyse the threshold more precisely, I draw a graph of the relation between $c$(coefficient of the threshold) and the probability that all points are in all five bounds.
+
+\begin{figure}[!htb]
+\centering
+\includegraphics[width=200pt]{bands.png}
+\caption{Prob-$c$}
+\end{figure}
+
+This figure shows that let the band width be $2 \times \frac{4}{\sqrt{50}}$, then with high probability all points are in all five bands.
+
+\section*{Exercise 2.51}
+\begin{enumerate}
+	\item Most of the volume of a ball in high dimensions is contained in the annulus. 
+	\item Most of the volume of a ball in high dimensions is contained in the equators.
+	\item If we draw two points at random from the unit ball, with high probability their vectors will be nearly orthogonal to each other.
+	\item In high dimensions, a unit cube will not be entirely covered by a unit ball. 
+	\item Under some conditions, it's possible for us to project high-dimension points to low-dimension ones while preserving the distances between each pair by a coefficient $(1\pm \varepsilon)\sqrt{k}$.
+\end{enumerate}
+\section*{Exercise 3.5}
+\subsection*{(a)}
+$$ M = \begin{bmatrix}1 & 1 \\ 0 & 3 \\ 3 & 0\end{bmatrix}$$
+According to the fact $$\mathbf{v}_1 = \arg\max_{|\mathbf{v}| = 1}|A\mathbf{v}|$$
+we derive $$V = \begin{bmatrix}\frac{\sqrt{2}}{2} & -\frac{\sqrt{2}}{{2}} \\ \frac{\sqrt{2}}{2} & \frac{\sqrt{2}}{2} \end{bmatrix} $$
+
+and(by calculating $|A\mathbf{v}|^2$, $A\cdot V = U\cdot D$) $$D = \begin{bmatrix}\sqrt{11} & 0 \\ 0 & 3 \\ 0 & 0 \end{bmatrix}$$
+$$U = \begin{bmatrix} \sqrt{\frac{2}{11}} & 0 & -\frac{3}{\sqrt{11}}\\ \frac{3}{\sqrt{22}} & \frac{1}{\sqrt{2}} & \frac{1}{\sqrt{11}} \\ \frac{3}{\sqrt{22}} & -\frac{1}{\sqrt{2}} & \frac{1}{\sqrt{11}}\end{bmatrix} $$ 
+\subsection*{(b)}
+$$ M = \begin{bmatrix}0 & 2 \\ 2 & 0 \\ 1 & 3 \\ 3 & 1\end{bmatrix}$$
+Use the same technique, we derive 
+$$V = \begin{bmatrix}\frac{\sqrt{2}}{2} & -\frac{\sqrt{2}}{{2}} \\ \frac{\sqrt{2}}{2} & \frac{\sqrt{2}}{2} \end{bmatrix} $$
+
+and $$D = \begin{bmatrix}2\sqrt{5} & 0 \\ 0 & 2\sqrt{2} \\ 0 & 0 \\ 0 & 0 \end{bmatrix} $$
+$$U = \begin{bmatrix} 
+\frac{1}{\sqrt{10}} & \frac{1}{2} & -\frac{1}{\sqrt{14}} & -\frac{9}{2\sqrt{35}}	\\
+\frac{1}{\sqrt{10}} & -\frac{1}{2} & -\frac{3}{\sqrt{14}} & \frac{1}{2\sqrt{35}}	\\
+\sqrt{\frac{2}{5}} & \frac{1}{2} & 0 & \frac{\sqrt{\frac{7}{5}}}{2}	\\
+\sqrt{\frac{2}{5}} & -\frac{1}{2} & \sqrt{\frac{2}{7}} & -\frac{3}{2\sqrt{35}}
+\end{bmatrix} $$
+\section*{Exercise 3.8}
+\subsection*{(a)}
+$|A\mathbf{v}_1|$ will reach its peak when $\mathbf{v}_1 = \begin{bmatrix}\sqrt{\frac{k}{n}} & \sqrt{\frac{k}{n}} & \cdots & 0\end{bmatrix}$, whose first $\sqrt{\frac{k}{n}}$ entries are not zero.
+
+$\mathbf{v}_2$ must be orthogonal with $A\mathbf{v}_1$, if some of its entries related to $\mathbf{v}_1$ is not $0$, then their sum must be $1$, which has nothing to do with $|A\mathbf{v}_2|$. Thus all its non-zero entries will have no intersection with those related to $\mathbf{v}_1$, then we will derive $\mathbf{v}_1 = \begin{bmatrix}0 & 0 & \cdots & \sqrt{\frac{k}{n}} & \sqrt{\frac{k}{n}} & \cdots & 0\end{bmatrix}$, whose second $\sqrt{\frac{k}{n}}$ entries are not zero.
+
+By using this routine again and again, we derive $\mathbf{v}_i$ has exactly $\sqrt{\frac{k}{n}}$ non-zero entries corresponding to the $i$-th block.
+
+\subsection*{(b)}
+If $a_1 = a_2 = \cdots, a_k$, the order of these singular vectors isn't important, thus we could arrange those singular vectors in any order. 
+
+\section*{Exercise 3.27}
+\subsection*{(a)}
+Here are some images generated by Python.
+\begin{figure}[H]
+	\centering
+	\subfigure[Use top 5\% singular values]{
+		\includegraphics[width=300pt]{dw5.png}
+	}
+
+	\subfigure[Use top 10\% singular values]{
+		\includegraphics[width=300pt]{dw10.png}
+	}
+
+	\subfigure[Use top 25\% singular values]{
+		\includegraphics[width=300pt]{dw25.png}
+	}
+
+	\subfigure[Use top 50\% singular values]{
+		\includegraphics[width=300pt]{dw50.png}
+	}
+	\caption{Images generated by SVD using different number of singular values.}
+\end{figure}
+\subsection*{(b)}
+The following tables shows how {\it Forbenius Norm} changes when ratio of used singular values grows.
+	\begin{table}[!htb]
+		\centering
+		\caption{My caption}
+		\label{my-label}
+		\begin{tabular}{|l|l|l|l|l|}
+			\hline
+			Ratio of used singular values     & $0.05$           & $0.10$           & $0.25$          & $0.50$   \\       
+			\hline
+			Percentage of Forbenius norm & $0.99683$ & $0.99862$ & $0.99966$ & $0.99995$            \\
+			\hline
+		\end{tabular}
+	\end{table}
+
+\section*{Exercise 3.30}
+\subsection*{(a)}
+$$d_{ij}^2 = (\mathbf{x}_i - \mathbf{x}_j)(\mathbf{x}_i - \mathbf{x}_j)^T = \mathbf{x}_i\mathbf{x}_i^T + \mathbf{x}_j\mathbf{x}_j^T - 2\mathbf{x}_i\mathbf{x}_j^T $$
+
+$$\mathbf{x}_i\mathbf{x}_j^T = \frac{1}{2}\left(\mathbf{x}_i\mathbf{x}_i^T + \mathbf{x}_j\mathbf{x}_j^T - d_{ij}^2\right) $$
+
+From the facts that $$\left(\sum_{k=1}^{n}\mathbf{x}_k\right)\left(\sum_{k=1}^{n}\mathbf{x}_k\right)^T = 0$$
+$$\left(\sum_{k=1}^{n}\mathbf{x}_k\right)\mathbf{x}_i^T = 0$$
+$$\left(\sum_{k=1}^{n}\mathbf{x}_k\right)\mathbf{x}_j^T = 0$$
+
+We derive:
+$$\sum_{k=1}^{n}\mathbf{x}_i\mathbf{x}_i^T = \frac{1}{2n} \sum_{i=1}^{n}\sum_{j=1}^{n}d_{ij}^2 $$
+
+$$\mathbf{x}_i\mathbf{x}_i^T = \frac{1}{n}\left(\sum_{k=1}^{n} d_{ki}^2 - \sum_{k=1}^{n}\mathbf{x}_k\mathbf{x}_k^T\right) $$
+$$\mathbf{x}_j\mathbf{x}_j^T = \frac{1}{n}\left(\sum_{k=1}^{n} d_{kj}^2 - \sum_{k=1}^{n}\mathbf{x}_k\mathbf{x}_k^T\right) $$
+
+Combining these facts, we have:
+$$\mathbf{x}_i\mathbf{x}_j^T = \frac{1}{2}\left[-d_{ij}^2 + \frac{1}{n}\sum_{k=1}^{n}d_{ki}^2 + \frac{1}{n}\sum_{k=1}^{n}d_{kj}^2 - \frac{1}{n^2}\sum_{i=1}^{n}\sum_{j=1}^{n}d_{ij}^2 \right] $$
+\subsection*{(b)}
+The left singular vectors $\mathbf{u}_j$ of $X$ are eigenvectors of $XX^T$ with eigenvalue $\sigma^2$.
+
+\textbf{Algorithm Description:}
+\begin{enumerate}
+	\item Compute the eigenvalue and eigenvectors of $XX^T$.
+	\item Choose the eigenvectors correspond to positive eigenvalues(If there are more than $d$ positive eigenvalues, choose the largest $d$ of them), let them be $U'$ and $\Sigma'\Sigma'^T$, then $U'\cdot \Sigma'$ is a feasible solution. 
+\end{enumerate}
+
+\textbf{Proof:}
+Suppose $X = U\Sigma V^T$, then $U\Sigma = XV$, which is equivalent to $X$ by translation, rotation or reflection.
+\section*{Exercise 3.31}
+\subsection*{(a)}
+Here are two images generated by Python using classical multidimensional scaling algorithm.
+\begin{figure}[H]
+\centering
+	\subfigure[American cities]{
+		\includegraphics[width=400pt]{america.png}
+	}
+	\subfigure[Chinese cities]{
+		\includegraphics[width=400pt]{china.png}
+	}
+	\caption{Placement in cities of US and China generated by classical multidimensional scaling.}
+\end{figure}
+\subsection*{(b)}
+If we regard the airline distance as the shortest path in euclidean space, we could apply the algorithm stated above to construct a 3-dimensional world model.
+
+Otherwise we need to know the radius of the earth, which is a little bit hard to acquire from the data. 
+\section*{Exercise 4.39}
+\subsection*{(a)}
+$$E[X] = \sqrt{n}p $$
+When $p = o\left(\frac{1}{\sqrt{n}}\right)$, $n\rightarrow \infty \Longrightarrow E[x] \rightarrow 0$.
+When $p > \frac{1}{\sqrt{n}}$, $P = 1 - (1-p)^{\sqrt{n}} > 1 - e^{-p\sqrt{n}}$, with high probility, $N(n, p)$ will contain a perfect square.
+Thus $\frac{1}{\sqrt{n}}$ is a threshold for this property.
+\subsection*{(b)}
+Use the same technique as showed above.
+$$E[X] = \sqrt[3]{n}p $$
+$$P = 1 - (1-p)^{\sqrt[3]{n}} > 1 - e^{-p\sqrt[3]{n}} $$
+We derive that $\frac{1}{\sqrt[3]{n}}$ is a threshold for this property.
+\subsection*{(c)}
+$$E[X] = pn/2 $$
+$$P = 1 - (1 - p)^{n/2} > 1 - e^{-pn/2} $$
+$\frac{2}{n}$ is a threshold for this property. 
+\subsection*{(d)}
+$$E[X] \approx \frac{n^2}{2}p^3$$
+$$E[X^2] < \frac{n^2}{2}p^3 + 2\left(\frac{2n^2}{2} p^4 + \frac{3n^3}{2} p^5 + \frac{n^4}{8}p^6\right) $$
+When $p = o\left(\sqrt[3]{\frac{1}{2n^2}}\right)$, $n\rightarrow \infty \Longrightarrow E[x] \rightarrow 0$.
+When $p > \sqrt[3]{\frac{1}{2n^2}}$, $E[X^2] = E[X]^2\left(1 + o(1)\right)$.
+By the second moment argument, $\sqrt[3]{\frac{1}{2n^2}}$ is a threshold for this statement.
+\end{document}
