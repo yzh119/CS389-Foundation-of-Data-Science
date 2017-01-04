@@ -112,9 +112,9 @@ In which $|E_S|$ is the number of edges in the subgraph induced on $S$.
 
 \section*{exercise 5.18}
 \subsection*{(a)}
-Suppose the sizes of two cliques are $n$ and $m$ respectively($n > m$). Then the maximal degree $d = n + m$, use {\it Metropolis-Hasting Algorithm} to determine the transition probability $$p_{xy} = \frac{1}{d}\min\left\{1, \frac{\pi_y}{\pi_x}\right\} = \frac{1}{d}$$
+Suppose the sizes of two cliques are $n$ and $m$ respectively($n \geq m$). Then the maximal degree $d = n + m$, use {\it Metropolis-Hasting Algorithm} to determine the transition probability $$p_{xy} = \frac{1}{d}\min\left\{1, \frac{\pi_y}{\pi_x}\right\} = \frac{1}{d}$$
 
-Use $V$ to denote the vertex set of the graph, and $V_1, V_2$ to denote the vertex set of the two cliques, respectively. Let $S = S_1 \cup S_2, S_1 \subseteq V_1, S_2 \subseteq V_2, S_1 \cap S_2 = \emptyset$ be a subset of $V$ with $|S| = \left\lfloor \frac{n+m}{2} \right\rfloor$.
+Use $V$ to denote the vertex set of the graph, and $V_1, V_2$ to denote the vertex set of the two cliques, respectively. Let $S = S_1 \cup S_2, S_1 \subseteq V_1, S_2 \subseteq V_2, S_1 \cap S_2 = \emptyset$ be a subset of $V$ with $|S| \leq \frac{n+m}{2}$.
 
 Suppose $v_1\in V_1$, $v_2\in V_2$ are connected. Compute $\Phi$ under different conditions:
 \begin{description}
@@ -124,14 +124,14 @@ Suppose $v_1\in V_1$, $v_2\in V_2$ are connected. Compute $\Phi$ under different
 	\item[$v_1 \not\in S_1, v_2 \not\in S_2$:] $$\frac{1}{|S|} \left(|S_1|(n - |S_1|)  + |S_2|(m - |S_2|)\right) \frac{1}{d}$$
 \end{description}
 
-In both cases, the minimal $\Phi$ is of order $O(\frac{n^2 + m^2}{(n+m)^2})$.
+$\Phi$ will reach its minima at $S = V_2$, where $d\Phi = \frac{1}{m}$. If $S\cap V_1 \not= \empty$, the numerator of $d\Phi$ will be greater than $n - 1$. To make $d\Phi \leq \frac{1}{m}$, the denominator $|S|$ has to be greater than $m(n-1)$ while it's impossible because $\frac{n+m}{2} < m(n-1)$. Thus $S \cap V_1 = \empty$, under this condition, $d\Phi = \frac{|S|(m - |S|)}{|S|} = m - |S|$ will reach its minima at $|S| = m$.
 
-$$\varepsilon\textrm{-mixing time} =  O\left(\frac{\log \frac{1}{\pi_{min}}}{\Phi^2 \varepsilon^3}\right) = O\left(\frac{1}{\varepsilon^3}\frac{(n+m)^4}{(n^2 + m^2)^2} \log(n+m)\right)$$
+$$\varepsilon\textrm{-mixing time} =  O\left(\frac{\log \frac{1}{\pi_{min}}}{\Phi^2 \varepsilon^3}\right) = O\left(\frac{1}{\varepsilon^3}m^2(n+m)^2 \log(n+m)\right)$$
 
 \subsection*{(b)}
 It's the same case as in the first question if we set the smaller clique's size as $1$:
 
-$$\varepsilon\textrm{-mixing time} = O\left(\frac{1}{\varepsilon^3}\frac{(n+1)^4}{(n^2 + 1)^2} \log(n+m)\right) = O\left(\frac{1}{\varepsilon^3}\log(n+m)\right) $$
+$$\varepsilon\textrm{-mixing time} = O\left(\frac{1}{\varepsilon^3}(n+1)^2\log(n+1)\right)$$
 \section*{exercise 5.23}
 Construct a circuit in the following way(Use the property $p_{xy} = \frac{C_{xy}}{C_x}$ to derive $R_{xy}$):
 
